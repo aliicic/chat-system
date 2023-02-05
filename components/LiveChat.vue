@@ -1,6 +1,6 @@
 <template>
     <!-- <div class="live-chat" id="temp_top" ref="liveChat" @click="LiveChatHandler" :style="[mobileChatStatus ? {'height':'calc(69vh - 10px)'} : {'height':'43vh'} ]"> -->
-    <div class="live-chat" id="temp_top" @click="LiveChatHandler">
+    <div class="live-chat" id="temp_top">
       <section class="msger">
         <div class="msger-header">
           <div class="msger-header-title">چت گروهی</div>
@@ -80,7 +80,7 @@
               style="display: flex; align-items: center"
               v-for="(item, index) in onlineUsers"
               :key="index"
-              @click="chooseUser(item.name, item.id)"
+           
               class="mb-2 usersList"
             >
               <div
@@ -110,14 +110,12 @@
       onlineUsers: {
         type: Array,
       },
-      chooseUser: {
-        type: Function,
-      },
+     
     },
     data: () => ({
       messagerTab: true,
       sender: "",
-      mobileChatStatus: false,
+  
       yourMessage: "",
       PersonName: "علی",
       PersonImg: "/person.jpg",
@@ -159,17 +157,7 @@
       },
     },
     methods: {
-      LiveChatHandler() {
-        this.mobileChatStatus = !this.mobileChatStatus;
-        //this.$scrollTo("#temp_top", 300, { offset: 0 });
-        if (window.innerWidth < 992) {
-          this.$emit("mobileChatStatus", this.mobileChatStatus);
-        }
-        // const [el] = this.$refs.input;
-        // if (el) {
-        //   el.scrollIntoView(false);
-        // }
-      },
+      
       handle() {
         this.typing = "درحال تایپ کردن ...";
         let oldmsg = this.yourMessage;

@@ -162,12 +162,10 @@
           </div>
           <div class="col-lg-4 live-chat" style="flex: auto; overflow-y: auto">
             <LiveChat
-              @mobileChatStatus="chatHandler"
               @submit="send"
               :confirmedMessage="confirmedMessage"
               :oldMessages="messages"
               :onlineUsers="onlineUsers"
-              :chooseUser="chooseUser"
             />
           </div>
         </div>
@@ -245,40 +243,10 @@
         //   console.log(this.confirmedMessage, 'confirmed message')
         // })
       },
-      chatHandler(status) {
-        this.chatStatus = status;
-        // if(status){
-        //   this.$refs.mobileHeader.style.height = 0
-        //   this.$refs.webinarInfo1.style.height = 0
-        //   this.$refs.webinarInfo2.style.height = 0
-        //   this.$refs.webinarInfo2.style.padding = 0
-        //   this.$refs.webinarInfo2.style.padding = 0
-        //   this.$refs.webinarInfo2.style.height = 0
-        // }
-      },
-
-      //   // if (screen.orientation && screen.orientation.lock) {
-      //   screen.orientation.lock("landscape-primary");
-      //   // }
-      // },
-      // overLayController(time) {
-      //   clearTimeout(this.idleTimer);
-      //   if (this.idleState == true) {
-      //     // $("#foo").removeClass("inactive");
-      //     document.getElementById("over-lay").style.opacity = 1;
-      //   }
-      //   this.idleState = false;
-      //   this.idleTimer = setTimeout(() => {
-      //     document.getElementById("over-lay").style.opacity = 0;
-      //     this.idleState = true;
-      //   }, time);
-      // },
+ 
       async roomInfo() {
         await this.socket.on("roomInfo", (roomInfo) => {
           this.roomName = roomInfo.name;
-          // console.log(roomInfo, 'rooooom')
-         // this.messages = roomInfo.messages;
-          // console.log(this.roomName , 'this is roomname')
         });
         await this.socket.on("countOfOnlineUsers", (count) => {
           console.log(count);
@@ -302,8 +270,6 @@
       },
     },
     beforeMount() {
-    //  this.userName = localStorage.getItem("name");
-   //   console.log(this.userName);
       this.socket = this.$nuxtSocket({});
       this.socket.on("connect", () => {
         this.socket.emit("joinRoom", {
@@ -323,16 +289,8 @@
       this.socket.on("disconnect", (e) => {
         console.log("socket desconnected");
         this.handleClose;
-      });
+      });}
 
-      window.addEventListener("resize", () => {
-        // We execute the same script as before
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${vh}px`);
-      });
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    },
   };
   </script>
   

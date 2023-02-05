@@ -19,6 +19,7 @@ export default {
     //const {data} =  await  this.$axios.get('api/users/list')
     // console.log(data);
     //  this.message = data
+    this.socket = this.$nuxtSocket({});
   },
 };
 </script>
